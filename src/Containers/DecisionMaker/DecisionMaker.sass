@@ -1,0 +1,120 @@
+.decision-maker
+  height: 100vh
+  width: 100vw
+
+.decision-maker__header
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  gap: 16px
+  padding: 16px 8px
+  border-bottom: 1px solid $color-lightGray
+  box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0.5)
+  position: relative
+  z-index: 10
+
+.decision-maker__header-title
+  @extend .gradient-text
+  margin: 0
+
+.decision-maker__header-actions
+  display: flex
+  gap: 10px
+
+.decision-maker__attribute-form
+  display: flex
+  flex-direction: column
+  gap: 8px
+
+.decision-maker__attribute-form-entry
+  display: grid
+  grid-template-rows: 20% auto
+  grid-template-columns: 65% 20% 10%
+  height: 100%
+  align-items: flex-end
+  gap: 10px
+
+  &--full-width
+    grid-column: 1 / 2
+    grid-column: 1 / 4
+    font-weight: 600
+
+  &--input-one
+    grid-row: 2
+    grid-column: 1
+    width: 100%
+
+  &--second-two
+    grid-row: 2
+    grid-column: 2
+    width: 100%
+
+.decision-maker__attribute-form-add-button
+  width: 50%
+  margin-top: 12px !important
+
+.decision-maker__attribute-form-submit-input
+  display: none
+
+.decision-maker__form-dialog
+  min-width: 450px !important
+
+.decision-maker__delete-dialog
+  min-width: 300px !important
+  min-height: auto !important
+
+  .dialog__actions
+    padding-top: 14px !important
+
+.decision-maker__form-error-banner
+  border-radius: 10px
+  background: $color-lightRed
+  font-size: 14px
+  font-weight: 600
+  height: 34px
+  padding-left: 8px
+  display: flex
+  align-items: center
+
+.decision-maker__option-form-entry
+  display: flex
+  flex-direction: column
+  gap: 10px
+
+.decision-maker__option-form-entry-title
+  font-weight: 600
+
+.decision-maker__option-form-name-input
+  display: flex
+  gap: 10px
+  align-items: flex-end
+
+.decision-maker__option-form-attribute-row
+  display: flex
+  font-size: 14px
+  align-items: center
+
+.decision-maker__option-form-attribute-col
+  flex: 1
+
+@media(max-width: 450px)
+  .decision-maker__attribute-form-entry
+    grid-template-columns: 60% 20% 10%
+
+  .decision-maker__form-dialog,
+  .decision-maker__delete-dialog
+    width: 100% !important
+    margin: 0 !important
+    min-width: auto !important
+
+  .decision-maker__attribute-form-add-button
+    width: 100%
+
+@media(max-width: 400px)
+  .decision-maker__header-actions
+    flex-wrap: wrap
+    width: 100%
+
+    button
+      width: 100%

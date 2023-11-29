@@ -1,0 +1,28 @@
+@import "./palette"
+@import "./Containers/DecisionMaker/DecisionMaker"
+@import "./Containers/DecisionMaker/Nodes/Node"
+@import "./Components/Dialog/Dialog"
+@import "./Components/Button/Button"
+@import "./Components/Input/Input"
+@import "./Components/Divider/Divider"
+
+@mixin base-view
+  margin: 0
+  padding: 0
+  height: 100%
+
+html
+  @include base-view
+
+#root
+  height: 100%
+
+body
+  @include base-view
+  overflow-x: auto
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif
+
+.gradient-text
+  background: -webkit-linear-gradient(90deg, $color-primary 37%, black 100%)
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent

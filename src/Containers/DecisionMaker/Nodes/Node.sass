@@ -1,0 +1,69 @@
+$node-shadow-color: rgba(0, 0, 0, 0.2)
+
+.base-node
+  background: white
+  width: auto
+  width: 200px
+  border-radius: 10px
+  border: 1px solid $color-primary
+  padding: 12px 4px 20px 20px
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  gap: 4px
+  cursor: auto
+  box-shadow: 0 4px 8px 0 $node-shadow-color
+  transition: 0.3s
+
+  &:hover
+    box-shadow: 0 8px 16px 0 $node-shadow-color
+
+.base-node--winner
+  @extend .base-node
+  display: grid
+  width: 350px
+  grid-template-columns: 75% 25%
+  gap: 15px
+  align-items: flex-end
+  word-break: break-all
+  padding: 12px 20px
+  align-items: center
+
+  .base-node__name--large
+    padding-bottom: 0
+
+.base-node__header
+  display: grid
+  grid-template-columns: 60% 40%
+  align-items: flex-end
+  word-break: break-all
+
+.base-node__name
+  @extend .gradient-text
+  font-size: 18px
+  font-weight: 600
+  padding-bottom: 8px
+
+.base-node__name--large
+  @extend .base-node__name
+  font-size: 24px
+
+.base-node__button-group
+  display: flex
+  gap: 0
+
+.option-node__divider-container
+  padding-right: 16px
+
+.option-node__attributes-list
+  margin: 0
+  padding-left: 16px
+
+.option-node__score-container
+  font-weight: 600
+
+.base-node__winner-score
+  @extend .gradient-text
+  font-size: 36px
+  font-weight: 600
+  text-align: center

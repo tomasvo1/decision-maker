@@ -1,0 +1,28 @@
+.input-container
+  display: flex
+  flex-direction: column
+  gap: 4px
+  width: 100%
+
+.input
+  height: 40px !important
+  width: 100% !important
+
+  &.MuiOutlinedInput-root
+    font-size: 14px !important
+    margin-bottom: 3px !important
+    margin-top: 3px !important
+
+  &.Mui-error fieldset
+    border-color: $color-error !important
+
+  &.Mui-focused fieldset
+    border-color: $color-primary !important
+
+.input-label
+  font-weight: 500
+  font-size: 14px
+
+.input-label__asterisk
+  color: $color-error
+  margin-left: 2px
