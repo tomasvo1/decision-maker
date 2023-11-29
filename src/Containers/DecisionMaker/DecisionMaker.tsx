@@ -60,7 +60,7 @@ export function DecisionMaker() {
   })), [options])
 
   const winnerNodes: Node[] = useMemo(() => {
-    if (!optionsNodes.length && attributesNodes.length) { return null }
+    if (!optionsNodes.length && attributesNodes.length) { return [] }
 
     const optionsWithHighestScore: IOption[] = options.reduce((topScoreOptions: IOption[], currentOption: IOption) => {
       if (!topScoreOptions.length || currentOption.totalScore > topScoreOptions[0].totalScore) {
@@ -101,6 +101,7 @@ export function DecisionMaker() {
       }
     }
 
+    if (winnerNodes?.length > 0)
     for (const optionNode of optionsNodes) {
       for (const winnerNode of winnerNodes) {
         const edge = {
