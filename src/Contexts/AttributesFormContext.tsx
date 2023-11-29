@@ -86,7 +86,7 @@ function useAttributesForm(
   ): boolean {
     const erroneousConditions: boolean[] = [
       key === 'name' && !value,
-      key === 'weight' && value <= 0,
+      key === 'weight' && Number(value) <= 0,
     ]
 
     if (erroneousConditions.some(x => x)) {

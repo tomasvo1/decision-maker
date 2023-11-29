@@ -1,4 +1,4 @@
 export * from './AttributesContext'
-export * from './AtributesFormContext'
+export * from './AttributesFormContext'
 export * from './OptionsContext'
 export * from './OptionsFormContext'
