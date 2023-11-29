@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import classnames from 'classnames'
 
 import { Button, Input, Divider, Dialog } from '../../../Components'
 import { useAttributesForm, useAttributes, useOptions } from '../../../Contexts'
@@ -31,10 +32,14 @@ function AttributeFormEntry({
 }: AttributeFormEntryProps) {
   return (
     <>
-      <div className="decision-maker__attribute-form-entry">
-        <span className="decision-maker__attribute-form-entry--full-width">
-          Attribute #{index + 1}
-        </span>
+      <div className={classnames('decision-maker__attribute-form-entry', {
+        'decision-maker__attribute-form-entry--inline': isEditingAttribute,
+      })}>
+        {!isEditingAttribute && (
+          <span className="decision-maker__attribute-form-entry--full-width">
+            Attribute #{index + 1}
+          </span>
+        )}
         <div className="decision-maker__attribute-form-entry--first-col">
           <Input
             label="Name"

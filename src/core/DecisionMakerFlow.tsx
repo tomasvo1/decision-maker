@@ -1,10 +1,17 @@
 import React, { useEffect } from 'react'
 import ReactFlow, { useNodesState, useEdgesState, Edge, Node } from 'reactflow'
 
-import CustomNode from './Nodes'
+import { AttributeNode, OptionNode, WinnerNode } from '../Containers/DecisionMaker/Nodes'
+import { NodeTypes } from '../Containers/DecisionMaker/enums'
+
+import 'reactflow/dist/style.css'
 
 
-const NODE_TYPES = { customNode: CustomNode }
+const NODE_TYPES = {
+  [NodeTypes.attributes]: AttributeNode,
+  [NodeTypes.options]: OptionNode,
+  [NodeTypes.winner]: WinnerNode,
+}
 
 
 interface DecisionMakerFlowProps {
@@ -31,6 +38,7 @@ function DecisionMakerFlow({ calculatedNodes, calculatedEdges }: DecisionMakerFl
       nodeTypes={NODE_TYPES}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
+      maxZoom={1}
       fitView
     />
   )

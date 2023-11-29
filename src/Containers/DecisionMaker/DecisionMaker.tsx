@@ -8,12 +8,16 @@ import {
   AttributesFormProvider,
   OptionsFormProvider,
 } from '../../Contexts'
+import DecisionMakerFlow from '../../core'
 
 import type { IOption } from './types'
 import { NodeTypes } from './enums'
 import { AttributeForm, OptionsForm } from './Forms'
-import DecisionMakerFlow from './DecisionMakerFlow'
 import Header from './Header'
+
+
+const STEP_X = 250
+const SPACE_X = 20
 
 
 export function DecisionMaker() {
@@ -41,8 +45,8 @@ export function DecisionMaker() {
 
   const attributesNodes: Node[] = useMemo(() => attributes.map((attribute, i) => ({
     id: `attribute-${attribute.id}`,
-    position: { x: i * 250 + 20, y: 0 },
-    type: 'customNode',
+    position: { x: i * STEP_X + SPACE_X, y: 0 },
+    type: NodeTypes.attributes,
     data: {
       ...attribute,
       type: NodeTypes.attributes,
@@ -51,8 +55,8 @@ export function DecisionMaker() {
 
   const optionsNodes: Node[] = useMemo(() => options.map((option, i) => ({
     id: `option-${option.id}`,
-    position: { x: i * 250 + 20, y: 300 },
-    type: 'customNode',
+    position: { x: i * STEP_X + SPACE_X, y: 200 },
+    type: NodeTypes.options,
     data: {
       ...option,
       type: NodeTypes.options,
@@ -70,12 +74,12 @@ export function DecisionMaker() {
         return [...topScoreOptions, currentOption]
       }
       return topScoreOptions
-    }, []);
+    }, [])
 
     return optionsWithHighestScore.map((option, i) => ({
       id: `winner-option-${option.id}`,
-      position: { x: i * 250 + 20, y: 700 },
-      type: 'customNode',
+      position: { x: i * STEP_X + SPACE_X, y: 600 },
+      type: NodeTypes.winner,
       data: {
         ...option,
         type: NodeTypes.winner,
@@ -101,7 +105,10 @@ export function DecisionMaker() {
       }
     }
 
-    if (winnerNodes?.length > 0)
+    if (winnerNodes?.length < 1) {
+      return edges
+    }
+
     for (const optionNode of optionsNodes) {
       for (const winnerNode of winnerNodes) {
         const edge = {

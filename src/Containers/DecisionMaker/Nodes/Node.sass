@@ -18,20 +18,6 @@ $node-shadow-color: rgba(0, 0, 0, 0.2)
   &:hover
     box-shadow: 0 8px 16px 0 $node-shadow-color
 
-.base-node--winner
-  @extend .base-node
-  display: grid
-  width: 350px
-  grid-template-columns: 75% 25%
-  gap: 15px
-  align-items: flex-end
-  word-break: break-all
-  padding: 12px 20px
-  align-items: center
-
-  .base-node__name--large
-    padding-bottom: 0
-
 .base-node__header
   display: grid
   grid-template-columns: 60% 40%
@@ -62,8 +48,33 @@ $node-shadow-color: rgba(0, 0, 0, 0.2)
 .option-node__score-container
   font-weight: 600
 
-.base-node__winner-score
+.winner-node
+  @extend .base-node
+  word-break: break-all
+  width: 350px
+  padding: 20px
+  gap: 0
+
+.winner-node__title
+  margin: 0
+
+.winner-node__name
   @extend .gradient-text
-  font-size: 36px
+  margin: 0
+
+.winner-node__lower-container
+  display: flex
+  gap: 4px
+  justify-content: space-between
+
+.winner-node__score
+  font-size: 24px
   font-weight: 600
-  text-align: center
+
+.winner-node__header
+  display: flex
+  align-items: center
+  gap: 8px
+
+  svg
+    fill: $color-primary

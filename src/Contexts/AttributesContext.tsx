@@ -94,7 +94,7 @@ function useAttributes(
 
     setAttributes(attrs => {
       const updatedAttributes = attrs.filter(attribute => attribute.id !== attributeToDelete.id)
-      updateOptionsAttributes(updatedAttributes, true)
+      updateOptionsAttributes?.(updatedAttributes, true)
       return updatedAttributes
     })
     setAttributeToDelete(null)

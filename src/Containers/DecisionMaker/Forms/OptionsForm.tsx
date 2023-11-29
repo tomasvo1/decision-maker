@@ -31,9 +31,11 @@ function OptionsFormEntry({
 }: OptionsFormEntryProps) {
   return (
     <div className="decision-maker__option-form-entry">
-      <span className="decision-maker__option-form-entry-title">
-        Option #{index + 1}
-      </span>
+      {!isEditingOption && (
+        <span className="decision-maker__option-form-entry-title">
+          Option #{index + 1}
+        </span>
+      )}
 
       <div className="decision-maker__option-form-name-input">
         <Input

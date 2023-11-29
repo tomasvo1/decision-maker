@@ -1,3 +1,5 @@
-import Node from './Node'
+import AttributeNode from './AttributeNode'
+import OptionNode from './OptionNode'
+import WinnerNode from './WinnerNode'
 
-export default Node
+export { AttributeNode, OptionNode, WinnerNode }
