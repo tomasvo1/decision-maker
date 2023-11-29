@@ -19,4 +19,4 @@ The winner of this decision quest will be determined on the total score of the o
 
 ## Access
 
-You can access decision maker on <insert>
+You can access decision maker on `https://decision-maker-tomas.vercel.app/` 
