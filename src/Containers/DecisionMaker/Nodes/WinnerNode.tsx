@@ -1,5 +1,5 @@
 import React from 'react'
-import { Node, Handle, Position } from 'reactflow'
+import { Handle, Position } from 'reactflow'
 import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined'
 
 import { Divider } from '../../../Components'
@@ -7,7 +7,7 @@ import { Divider } from '../../../Components'
 import { IOptionNode } from '../types'
 
 
-function WinnerNode(props: Node<IOptionNode>) {
+function WinnerNode(props: { data: IOptionNode }) {
   const { name, totalScore } = props.data
 
   return (

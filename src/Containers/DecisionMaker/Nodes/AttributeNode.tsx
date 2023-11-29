@@ -1,11 +1,11 @@
 import React from 'react'
-import { Node } from 'reactflow'
 
 import { IAttributeNode } from '../types'
+
 import BaseNode from './BaseNode'
 
 
-function AttributeNode(props: Node<IAttributeNode>) {
+function AttributeNode(props: { data: IAttributeNode }) {
   const { name, id, type, weight } = props.data
 
   return (

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import ReactFlow, { useNodesState, useEdgesState, Edge, Node } from 'reactflow'
+import ReactFlow, { useNodesState, useEdgesState, Edge, Node, NodeTypes as INodeTypes } from 'reactflow'
 
 import { AttributeNode, OptionNode, WinnerNode } from '../Containers/DecisionMaker/Nodes'
 import { NodeTypes } from '../Containers/DecisionMaker/enums'
@@ -7,10 +7,10 @@ import { NodeTypes } from '../Containers/DecisionMaker/enums'
 import 'reactflow/dist/style.css'
 
 
-const NODE_TYPES = {
-  [NodeTypes.attributes]: AttributeNode,
-  [NodeTypes.options]: OptionNode,
-  [NodeTypes.winner]: WinnerNode,
+const NODE_TYPES: INodeTypes = {
+  [NodeTypes.attributes as string]: AttributeNode,
+  [NodeTypes.options as string]: OptionNode,
+  [NodeTypes.winner as string]: WinnerNode,
 }
 
 

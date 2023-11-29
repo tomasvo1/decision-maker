@@ -1,5 +1,4 @@
 import React from 'react'
-import { Node } from 'reactflow'
 
 import { Divider } from '../../../Components'
 
@@ -8,7 +7,7 @@ import { IOptionNode } from '../types'
 import BaseNode from './BaseNode'
 
 
-function OptionNode(props: Node<IOptionNode>) {
+function OptionNode(props: { data: IOptionNode }) {
   const { name, id, type, attributes, totalScore } = props.data
 
   return (
