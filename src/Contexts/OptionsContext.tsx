@@ -38,7 +38,7 @@ const OptionsContext = React.createContext<{
 
 function OptionsProvider({ children }: { children: ReactNode }): JSX.Element {
   const [options, setOptions] = useState<IOption[]>(
-    JSON.parse(localStorage.getItem('options')) ?? '[]',
+    JSON.parse(localStorage.getItem('options')) ?? [],
   )
   const [optionToDelete, setOptionToDelete] = useState<IOption | null>(null)
   const [optionToEdit, setOptionToEdit] = useState<IOption | null>(null)
