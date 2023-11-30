@@ -107,15 +107,14 @@ function useOptions(): Context {
       const attributeIds = attributes.map(attribute => attribute.id)
       const filteredOptions = updatedOptions
         .filter(option => {
-          for (const key of Object.keys(option.attributes)) {
-            if (!attributeIds.includes(key)) {
-              continue
-            }
+          const keysLeft = Object.keys(option.attributes).filter(id => !attributeIds.includes(id))
 
+          for (const key of keysLeft) {
             if (option.attributes[key]) {
               delete option.attributes[key]
             }
           }
+
           return option
         })
         .map(option => ({
