@@ -10,6 +10,8 @@ import { v4 as uuidv4 } from 'uuid'
 
 import type { IAttribute, AttributeInputManipulationFnType, IAttributeError } from '../types'
 
+import { getAttributeErrorMessage } from './utils';
+
 
 interface Context {
   formAttributes: IAttribute[];
@@ -95,7 +97,7 @@ function useAttributesForm(
         const updatedErrors = [...errs]
         updatedErrors[index] = {
           ...updatedErrors[index],
-          [key]: key === 'name' ? 'Name cannot be empty' : 'Weight must be greater than 0',
+          [key]: getAttributeErrorMessage(key, value),
         }
         return updatedErrors
       })

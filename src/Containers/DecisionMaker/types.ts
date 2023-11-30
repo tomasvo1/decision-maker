@@ -1,6 +1,3 @@
-import { NodeTypes } from './enums'
-
-
 export interface IAttribute {
   id: string;
   name: string;
@@ -23,11 +20,13 @@ export interface IOption {
 }
 
 export interface IOptionNode extends IOption {
-  type: NodeTypes;
+  onOptionEdit: (id: string) => void;
+  onOptionDelete: (id?: string) => void;
 }
 
 export interface IAttributeNode extends IAttribute {
-  type: NodeTypes;
+  onAttributeEdit: (id: string) => void;
+  onAttributeDelete: (id?: string) => void;
 }
 
 export interface IOptionError {

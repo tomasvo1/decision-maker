@@ -3,49 +3,30 @@ import React, { ReactNode } from 'react'
 import { Handle, Position } from 'reactflow'
 
 import { Divider } from '../../../Components'
-import { useAttributes, useOptions } from '../../../Contexts'
 
 import { DeleteIconButton, EditIconButton } from '../Shared'
-import { NodeTypes } from '../enums'
 
 
 interface BaseNodeProps {
   id: string;
-  type: NodeTypes;
   name: string;
   showTopHandle?: boolean;
   showBottomHandle?: boolean;
   children: ReactNode;
+  onEdit: (id: string) => void;
+  onDelete: (id?: string) => void;
 }
 
 
 function BaseNode({
   id,
-  type,
   name,
   showTopHandle = false,
   showBottomHandle = false,
   children,
+  onEdit,
+  onDelete,
 }: BaseNodeProps) {
-  const { onAttributeEdit, onAttributeDelete } = useAttributes()
-  const { onOptionEdit, onOptionDelete } = useOptions()
-
-  function onEditClick() {
-    if (type === NodeTypes.attributes) {
-      onAttributeEdit(id)
-      return
-    }
-    onOptionEdit(id)
-  }
-
-  function onDeleteClick() {
-    if (type === NodeTypes.attributes) {
-      onAttributeDelete(id)
-      return
-    }
-    onOptionDelete(id)
-  }
-
   return (
     <>
       {showTopHandle && (
@@ -58,8 +39,8 @@ function BaseNode({
           </span>
 
           <div className="base-node__button-group">
-            <EditIconButton onClick={onEditClick} />
-            <DeleteIconButton onClick={onDeleteClick} />
+            <EditIconButton onClick={() => onEdit(id)} />
+            <DeleteIconButton onClick={() => onDelete(id)} />
           </div>
         </div>
 

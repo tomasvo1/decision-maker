@@ -8,15 +8,16 @@ import BaseNode from './BaseNode'
 
 
 function OptionNode(props: { data: IOptionNode }) {
-  const { name, id, type, attributes, totalScore } = props.data
+  const { name, id, attributes, totalScore, onOptionDelete, onOptionEdit } = props.data
 
   return (
     <BaseNode
       id={id}
-      type={type}
       name={name}
       showBottomHandle
       showTopHandle
+      onDelete={onOptionDelete}
+      onEdit={onOptionEdit}
     >
       <ul className="option-node__attributes-list">
         {Object.entries(attributes).map(([id, attribute]) => (

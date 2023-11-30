@@ -28,6 +28,7 @@ export function DecisionMaker() {
     options,
     optionToDelete,
     optionToEdit,
+    onOptionEdit,
     onOptionDelete,
     setOptionToEdit,
     setOptionToDelete,
@@ -38,6 +39,7 @@ export function DecisionMaker() {
     attributes,
     attributeToEdit,
     attributeToDelete,
+    onAttributeEdit,
     setAttributeToEdit,
     onAttributeDelete,
     setAttributeToDelete,
@@ -49,7 +51,8 @@ export function DecisionMaker() {
     type: NodeTypes.attributes,
     data: {
       ...attribute,
-      type: NodeTypes.attributes,
+      onAttributeDelete,
+      onAttributeEdit,
     },
   })), [attributes])
 
@@ -59,7 +62,8 @@ export function DecisionMaker() {
     type: NodeTypes.options,
     data: {
       ...option,
-      type: NodeTypes.options,
+      onOptionEdit,
+      onOptionDelete,
     },
   })), [options])
 

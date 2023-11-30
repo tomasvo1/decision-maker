@@ -6,14 +6,15 @@ import BaseNode from './BaseNode'
 
 
 function AttributeNode(props: { data: IAttributeNode }) {
-  const { name, id, type, weight } = props.data
+  const { name, id, weight, onAttributeDelete, onAttributeEdit } = props.data
 
   return (
     <BaseNode
       id={id}
-      type={type}
       name={name}
       showBottomHandle
+      onDelete={onAttributeDelete}
+      onEdit={onAttributeEdit}
     >
       <b>Weight: {weight}</b>
     </BaseNode>
