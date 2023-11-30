@@ -113,7 +113,7 @@ function useAttributesForm(
     return false
   }, [])
 
-  function onAttributeChange<T extends keyof IAttribute>(
+  const onAttributeChange = useCallback(function onAttributeChange<T extends keyof IAttribute>(
     index: number,
     key: T,
     value: IAttribute[T],
@@ -129,7 +129,7 @@ function useAttributesForm(
     })
 
     validateAttributeInputs(index, key, value)
-  }
+  }, [])
 
   function onAddAnotherAttribute(): void {
     const id: string = uuidv4()
