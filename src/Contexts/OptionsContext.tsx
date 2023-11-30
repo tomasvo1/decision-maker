@@ -5,6 +5,7 @@ import React, {
   Dispatch,
   SetStateAction,
   useEffect,
+  useCallback,
 } from 'react'
 
 import type { IAttribute, IOption } from '../types'
@@ -35,9 +36,9 @@ const OptionsContext = React.createContext<{
 } | undefined>(undefined)
 
 
-function OptionsProvider({ children }: { children: ReactNode }) {
+function OptionsProvider({ children }: { children: ReactNode }): JSX.Element {
   const [options, setOptions] = useState<IOption[]>(
-    JSON.parse(localStorage.getItem('options')) ?? [],
+    JSON.parse(localStorage.getItem('options')) ?? '[]',
   )
   const [optionToDelete, setOptionToDelete] = useState<IOption | null>(null)
   const [optionToEdit, setOptionToEdit] = useState<IOption | null>(null)
@@ -96,7 +97,10 @@ function useOptions(): Context {
     setOptionToDelete(null)
   }
 
-  function updateOptionsAttributes(attributes: IAttribute[], deleted?: boolean): void {
+  const updateOptionsAttributes = useCallback(function updateOptionsAttributes(
+    attributes: IAttribute[],
+    deleted?: boolean,
+  ): void {
     const updatedOptions = [...options]
 
     if (deleted) {
@@ -140,7 +144,7 @@ function useOptions(): Context {
     }
 
     setOptions(updatedOptions)
-  }
+  }, [options])
 
   return {
     options,

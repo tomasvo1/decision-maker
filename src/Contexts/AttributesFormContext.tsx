@@ -4,6 +4,7 @@ import React, {
   useContext,
   Dispatch,
   SetStateAction,
+  useCallback,
 } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -39,7 +40,7 @@ const FORM_ATTRIBUTES_INITIAL_VALUE: { name: string; weight: number } = { name: 
 const FORM_ATTRIBUTES_ERRORS_INITIAL_VALUE: { name: string; weight: string } = { name: '', weight: '' }
 
 
-function AttributesFormProvider({ children }: { children: ReactNode }) {
+function AttributesFormProvider({ children }: { children: ReactNode }): JSX.Element {
   const id: string = uuidv4()
 
   const [formAttributes, setFormAttributes] = useState<IAttribute[]>([{
@@ -79,7 +80,7 @@ function useAttributesForm(
     setFormAttributes,
   } = context
 
-  function validateAttributeInputs<T extends keyof IAttribute>(
+  const validateAttributeInputs = useCallback(function validateAttributeInputs<T extends keyof IAttribute>(
     index: number,
     key: T,
     value: IAttribute[T],
@@ -110,7 +111,7 @@ function useAttributesForm(
       return updatedErrors
     })
     return false
-  }
+  }, [])
 
   function onAttributeChange<T extends keyof IAttribute>(
     index: number,
@@ -147,7 +148,7 @@ function useAttributesForm(
     setFormAttributesErrors([{ ...FORM_ATTRIBUTES_ERRORS_INITIAL_VALUE, id }])
   }
 
-  function onAttributesFormSubmit(
+  const onAttributesFormSubmit = useCallback(function onAttributesFormSubmit(
     setterFn: Dispatch<SetStateAction<IAttribute[]>>,
     closeFormFn: () => void,
     attributeToEdit: IAttribute | null,
@@ -159,11 +160,7 @@ function useAttributesForm(
       const hasNameErrors = validateAttributeInputs(i, 'name', attribute.name)
       const hasWeightErrors = validateAttributeInputs(i, 'weight', attribute.weight)
 
-      if (hasNameErrors || hasWeightErrors) {
-        hasErrors = true
-      } else {
-        hasErrors = false
-      }
+      hasErrors = hasNameErrors || hasWeightErrors
     }
 
     if (hasErrors) {
@@ -194,7 +191,7 @@ function useAttributesForm(
 
     closeFormFn()
     resetForm()
-  }
+  }, [formAttributes])
 
   return {
     formAttributes,

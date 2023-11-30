@@ -5,6 +5,7 @@ import React, {
   Dispatch,
   SetStateAction,
   useEffect,
+  useCallback,
 } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -59,7 +60,7 @@ function formAttributeMap(attributes: IAttribute[]): AttributeMap {
 }
 
 
-function OptionsFormProvider({ children }: { children: ReactNode }) {
+function OptionsFormProvider({ children }: { children: ReactNode }): JSX.Element {
   const { attributes } = useAttributes()
 
   const id: string = uuidv4()
@@ -119,7 +120,7 @@ function useOptionsForm(): Context {
 
   const { attributes } = useAttributes()
 
-  function validateOptionName(
+  const validateOptionName = useCallback(function validateOptionName(
     index: number,
     value: string,
   ): boolean {
@@ -144,9 +145,9 @@ function useOptionsForm(): Context {
       return updatedErrors
     })
     return true
-  }
+  }, [])
 
-  function onOptionChange<T extends keyof IOption>(
+  const onOptionChange = useCallback(function onOptionChange<T extends keyof IOption>(
     index: number,
     key: T,
     value: IOption[T],
@@ -164,7 +165,7 @@ function useOptionsForm(): Context {
     if (key === 'name') {
       validateOptionName(index, String(value))
     }
-  }
+  }, [])
 
   function onAddAnotherOption(): void {
     const id: string = uuidv4()
@@ -185,7 +186,7 @@ function useOptionsForm(): Context {
     setFormOptionsErrors(errs => errs.filter((_, i) => i !== index))
   }
 
-  function onOptionsFormSubmit(
+  const onOptionsFormSubmit = useCallback(function onOptionsFormSubmit(
     setterFn: Dispatch<SetStateAction<IOption[]>>,
     closeFormFn: () => void,
     optionToEdit: IOption | null,
@@ -194,13 +195,7 @@ function useOptionsForm(): Context {
 
     for (let i = 0; i < formOptions.length; i++) {
       const option = formOptions[i]
-      const hasNameErrors = validateOptionName(i, option.name)
-
-      if (hasNameErrors) {
-        hasErrors = true
-      } else {
-        hasErrors = false
-      }
+      hasErrors = validateOptionName(i, option.name)
     }
 
     if (hasErrors) {
@@ -234,7 +229,7 @@ function useOptionsForm(): Context {
 
     closeFormFn()
     resetForm()
-  }
+  }, [formOptions])
 
   return {
     formOptions,

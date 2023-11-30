@@ -32,9 +32,9 @@ const AttributesContext = React.createContext<{
 } | undefined>(undefined)
 
 
-function AttributesProvider({ children }: { children: ReactNode }) {
+function AttributesProvider({ children }: { children: ReactNode }): JSX.Element {
   const [attributes, setAttributes] = useState<IAttribute[]>(
-    JSON.parse(localStorage.getItem('attributes')) ?? []
+    JSON.parse(localStorage.getItem('attributes')) ?? '[]',
   )
 
   const [attributeToEdit, setAttributeToEdit] = useState<IAttribute | null>(null)

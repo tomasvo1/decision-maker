@@ -8,25 +8,25 @@ interface ButtonProps extends MButtonProps {
 
 
 export function Button({
-	variant = 'contained',
-	className,
-	children,
+  variant = 'contained',
+  className,
+  children,
   danger,
-	onClick,
+  onClick,
   ...rest
 }: ButtonProps) {
-	return (
-		<MButton
-			variant={variant}
-			className={classnames('button',
-				`button--${variant}`,
+  return (
+    <MButton
+      variant={variant}
+      className={classnames('button',
+        `button--${variant}`,
         { 'button--danger': danger },
-				className,
-			)}
-			onClick={onClick}
+        className,
+      )}
+      onClick={onClick}
       {...rest}
-		>
-			{children}
-		</MButton>
-	)
+    >
+      {children}
+    </MButton>
+  )
 }
