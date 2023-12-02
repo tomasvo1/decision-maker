@@ -49,6 +49,7 @@ export function DecisionMaker() {
     id: `attribute-${attribute.id}`,
     position: { x: i * STEP_X + SPACE_X, y: 0 },
     type: NodeTypes.attributes,
+    deletable: false,
     data: {
       ...attribute,
       onAttributeDelete,
@@ -60,6 +61,7 @@ export function DecisionMaker() {
     id: `option-${option.id}`,
     position: { x: i * STEP_X + SPACE_X, y: 200 },
     type: NodeTypes.options,
+    deletable: false,
     data: {
       ...option,
       onOptionEdit,
@@ -84,6 +86,7 @@ export function DecisionMaker() {
       id: `winner-option-${option.id}`,
       position: { x: i * STEP_X + SPACE_X, y: 600 },
       type: NodeTypes.winner,
+      deletable: false,
       data: {
         ...option,
         type: NodeTypes.winner,
@@ -100,6 +103,7 @@ export function DecisionMaker() {
           id: `edge-from-${attributeNode.id}-to-${optionNode.id}`,
           source: attributeNode.id,
           target: optionNode.id,
+          deletable: false,
           animated: true,
           markerEnd: {
             type: MarkerType.ArrowClosed,
@@ -119,6 +123,7 @@ export function DecisionMaker() {
           id: `edge-from-${optionNode.id}-to-${winnerNode.id}`,
           source: optionNode.id,
           target: winnerNode.id,
+          deletable: false,
           animated: true,
           markerEnd: {
             type: MarkerType.ArrowClosed,
